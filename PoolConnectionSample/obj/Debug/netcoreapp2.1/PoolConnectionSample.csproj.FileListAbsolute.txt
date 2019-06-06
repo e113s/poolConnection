@@ -1,0 +1,11 @@
+C:\Users\e113s\source\repos\PoolConnectionSample\PoolConnectionSample\bin\Debug\netcoreapp2.1\PoolConnectionSample.deps.json
+C:\Users\e113s\source\repos\PoolConnectionSample\PoolConnectionSample\bin\Debug\netcoreapp2.1\PoolConnectionSample.runtimeconfig.json
+C:\Users\e113s\source\repos\PoolConnectionSample\PoolConnectionSample\bin\Debug\netcoreapp2.1\PoolConnectionSample.runtimeconfig.dev.json
+C:\Users\e113s\source\repos\PoolConnectionSample\PoolConnectionSample\bin\Debug\netcoreapp2.1\PoolConnectionSample.dll
+C:\Users\e113s\source\repos\PoolConnectionSample\PoolConnectionSample\obj\Debug\netcoreapp2.1\PoolConnectionSample.csprojAssemblyReference.cache
+C:\Users\e113s\source\repos\PoolConnectionSample\PoolConnectionSample\obj\Debug\netcoreapp2.1\PoolConnectionSample.csproj.CoreCompileInputs.cache
+C:\Users\e113s\source\repos\PoolConnectionSample\PoolConnectionSample\obj\Debug\netcoreapp2.1\PoolConnectionSample.AssemblyInfoInputs.cache
+C:\Users\e113s\source\repos\PoolConnectionSample\PoolConnectionSample\obj\Debug\netcoreapp2.1\PoolConnectionSample.AssemblyInfo.cs
+C:\Users\e113s\source\repos\PoolConnectionSample\PoolConnectionSample\bin\Debug\netcoreapp2.1\PoolConnectionSample.pdb
+C:\Users\e113s\source\repos\PoolConnectionSample\PoolConnectionSample\obj\Debug\netcoreapp2.1\PoolConnectionSample.dll
+C:\Users\e113s\source\repos\PoolConnectionSample\PoolConnectionSample\obj\Debug\netcoreapp2.1\PoolConnectionSample.pdb
