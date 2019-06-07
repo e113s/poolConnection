@@ -6,115 +6,70 @@ namespace PoolConnectionSample
 {
     class Program
     {
-        private static ContextDAO context = new ContextDAO();
-        private static SqlCommand command = new SqlCommand();
-        private static SqlDataReader reader;
+        private static ContextDAO context;
+        private static ContextDAO context2;
+        private static SqlConnection connection1;
+        private static SqlConnection connection2;
+        private static SqlConnection connection3;
+        private static DateTime time;
+        private static DateTime startTime;
+        private static DateTime endTime;
+        private static TimeSpan startTimeSpan;
+        private static TimeSpan endTimeSpan;
+
+        private static bool isBetween(DateTime time, DateTime startTime, DateTime endTime)
+        {
+            if (time.TimeOfDay == startTime.TimeOfDay) return true;
+            if (time.TimeOfDay == endTime.TimeOfDay) return true;
+
+            if (startTime.TimeOfDay <= endTime.TimeOfDay)
+                return (time.TimeOfDay >= startTime.TimeOfDay && time.TimeOfDay <= endTime.TimeOfDay);
+            else
+                return !(time.TimeOfDay >= endTime.TimeOfDay && time.TimeOfDay <= startTime.TimeOfDay);
+
+        }
 
         static void Main(string[] args)
         {
+            time = DateTime.Now;
+            startTime = Convert.ToDateTime("16:00:00 PM");
+            endTime = Convert.ToDateTime("19:00:00 PM");
+            Console.WriteLine(time);
+            Console.WriteLine(startTime);
+            Console.WriteLine(endTime);
 
-            /*
-            string sqlConnection = "Server= localhots; User Id=elles; Password=54321;" +
-                "Integrated security = SSPI; Database = PlantAndHealth";
-            */
+            Console.WriteLine(isBetween(time, startTime, endTime));
 
-            /*connection.ConnectionString = sqlConnection + "Connection Timeout = 30;" +
-                "Connection Lifetime = 0; Min Pool Size = 0; Max Pool Size = 100; Pooling = true";
-            */
-            
-
-            try
+            if (isBetween(time, startTime, endTime))
             {
+                //Pruebas conexion
+                context = new ContextDAO();
+                connection1 = context.sConNme;
+                connection2 = context.sConNme;
 
-                Console.WriteLine("==================== Connection 1 =========================");
+                connection1.Open();
+                //connection2.Open();
+                Console.WriteLine("State of connection 1: " + connection1.State);
+                Console.WriteLine("State of connection 2: " + connection2.State);
+                //Console.WriteLine("State of connection 3: " + connection3.State);
 
-                command.CommandText = "SELECT TOP 100 * FROM ARTICULOS";
-                command.CommandType = CommandType.Text;
-                command.Connection = context.sConNme;
+                Console.WriteLine("================================================================");
+                connection1.Dispose();
+                //connection2.Dispose();
+                Console.WriteLine("State of connection 1: " + connection1.State);
+                Console.WriteLine("State of connection 2: " + connection2.State);
+                //Console.WriteLine("State of connection 3: " + connection3.State);
+                Console.Read();
 
-                context.openSqlConn(context.sConNme);
-
-                using (reader = command.ExecuteReader())
-                {
-                    Console.WriteLine("Codigo Producto\tNombre\t\tFamilia\t\tPrecio Unitario\t\tCosto Unitario");
-                    while (reader.Read())
-                    {
-                        Console.WriteLine(String.Format("{0} \t | {1} \t | {2} \t | {3} \t | {4}",
-                        reader[0], reader[1], reader[2], reader[3], reader[4]));
-                    }
-               
-                }
-
-                reader.Close();
-               
             }
-            catch(Exception ex)
+            else
             {
-                Console.WriteLine(ex);
-                Console.ReadLine();
-                reader.Close();
+                Console.Write("No tienes permiso para acceder en estos momentos shavo :c");
             }
 
 
-            try
-            {
-                Console.WriteLine("==================== Connection 2 =========================");
 
-                command.CommandText = "SELECT * FROM REGION";
-                command.CommandType = CommandType.Text;
-                command.Connection = context.sConNme;
-
-                context.openSqlConn(context.sConNme);
-
-                using (reader = command.ExecuteReader())
-                {
-                    Console.WriteLine("REGION ID\t\tREGION");
-                    while (reader.Read())
-                    {
-                        Console.WriteLine(String.Format("{0} \t | {1}",
-                        reader[0], reader[1]));
-                    }
-
-                }
-
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                Console.ReadLine();
-                reader.Close();
-            }
-
-            try
-            {
-                Console.WriteLine("==================== Connection 3 =========================");
-
-                command.CommandText = "SELECT * FROM COMUNA;";
-                command.CommandType = CommandType.Text;
-                command.Connection = context.sConNme;
-
-                context.openSqlConn(context.sConNme);
-
-                using (reader = command.ExecuteReader())
-                {
-                    Console.WriteLine("COMUNA ID\t\tCOMUNA NOMBRE\t\tPROVINCIA ID");
-                    while (reader.Read())
-                    {
-                        Console.WriteLine(String.Format("{0} \t | {1} \t | {2}",
-                        reader[0], reader[1], reader[2]));
-                    }
-                }
-
-                reader.Close();
-                Console.ReadLine();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                Console.ReadLine();
-                reader.Close();
-            }
+            Console.Read();
         }
     }
 }

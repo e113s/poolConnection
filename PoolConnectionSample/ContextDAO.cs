@@ -18,15 +18,16 @@ namespace PoolConnectionSample
             obj_sqnBuild.Password = "54321";
             obj_sqnBuild.InitialCatalog = "PlantAndHealth";
             obj_sqnBuild.MinPoolSize = 1;
-            obj_sqnBuild.MinPoolSize = 25;
+            obj_sqnBuild.MaxPoolSize = 3;
             obj_sqnBuild.ConnectTimeout = 10;
-            obj_sqnBuild.Pooling = true;
+            //obj_sqnBuild.LoadBalanceTimeout = 10;
+            //obj_sqnBuild.Pooling = true;
             //obj_sqnBuild.IntegratedSecurity = true;
             obj_sqlConn.ConnectionString = obj_sqnBuild.ConnectionString;
         }
 
         public void openSqlConn(SqlConnection connection)
-        {
+        {    
             if (connection.State == ConnectionState.Open)
             {
                 connection.Close();
@@ -35,12 +36,11 @@ namespace PoolConnectionSample
             connection.Open();
         }
 
-        public SqlConnection sConNme//Propert for retrieving the sql connection string
+        public SqlConnection sConNme
         {
             get
             {
                 return obj_sqlConn;
-                //return Obj_odnbuild.ConnectionString;
             }
             set
             {
